@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int binaryfunction(int arr[], int low, int high, int p)
+{
+    if (low > high)
+        return -1;
+
+    int mid = (low + high) / 2;
+
+    if (arr[mid] == p)
+        return mid;
+
+    if (p < arr[mid])
+        return binaryfunction(arr, low, mid - 1, p);
+
+    return binaryfunction(arr, mid + 1, high, p);
+}
+
+int main()
+{
+    int arr[] = {2, 3, 4, 7, 8, 9, 10, 56, 75};
+    int res;
+
+    res = binaryfunction(arr, 0, 4, 3);
+    printf("Index %d", res);
+    printf("\n");
+
+    res = binaryfunction(arr, 0, 8, 10);
+    printf("Index %d", res);
+    printf("\n");
+
+    return 0;
+}
