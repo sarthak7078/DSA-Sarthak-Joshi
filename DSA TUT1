@@ -1,0 +1,134 @@
+#include <stdio.h>
+
+int main()
+{
+    char str1[100], str2[100], result[100];
+    int choice, i, j, len, pos;
+    char temp;
+
+    printf("1. Substring\n");
+    printf("2. Palindrome Check\n");
+    printf("3. Compare Two Strings\n");
+    printf("4. Copy String\n");
+    printf("5. Reverse String\n");
+
+    printf("Enter choice (1-5): ");
+    scanf("%d", &choice);
+
+    switch (choice)
+    {
+        case 1:
+            printf("Enter main string: ");
+            scanf("%99s", str1);
+
+            printf("Enter start position and length: ");
+            scanf("%d%d", &pos, &len);
+
+            for (i = 0; i < len; i++)
+            {
+                result[i] = str1[pos + i];
+            }
+
+            result[i] = '\0';
+            printf("Output Substring: %s\n", result);
+            break;
+
+        case 2:
+            printf("Enter a string: ");
+            scanf("%99s", str1);
+
+            len = 0;
+            while (str1[len] != '\0')
+                len++;
+
+            i = 0;
+            j = len - 1;
+            int isPalin = 1;
+
+            while (i < j)
+            {
+                if (str1[i] != str1[j])
+                {
+                    isPalin = 0;
+                    break;
+                }
+                i++;
+                j--;
+            }
+
+            if (isPalin == 1)
+                printf("Result: It is a palindrome.\n");
+            else
+                printf("Result: It is NOT a palindrome.\n");
+            break;
+
+        case 3:
+            printf("Enter first string: ");
+            scanf("%99s", str1);
+
+            printf("Enter second string: ");
+            scanf("%99s", str2);
+
+            i = 0;
+            int isMatch = 1;
+
+            while (str1[i] != '\0' || str2[i] != '\0')
+            {
+                if (str1[i] != str2[i])
+                {
+                    isMatch = 0;
+                    break;
+                }
+                i++;
+            }
+
+            if (isMatch == 1)
+                printf("Result: Strings are matching.\n");
+            else
+                printf("Result: Strings are not matching.\n");
+            break;
+
+        case 4:
+            printf("Enter string to copy: ");
+            scanf("%99s", str1);
+
+            i = 0;
+            while (str1[i] != '\0')
+            {
+                result[i] = str1[i];
+                i++;
+            }
+
+            result[i] = '\0';
+            printf("Copied String: %s\n", result);
+            break;
+
+        case 5:
+            printf("Enter string to reverse: ");
+            scanf("%99s", str1);
+
+            len = 0;
+            while (str1[len] != '\0')
+                len++;
+
+            i = 0;
+            j = len - 1;
+
+            while (i < j)
+            {
+                temp = str1[i];
+                str1[i] = str1[j];
+                str1[j] = temp;
+                i++;
+                j--;
+            }
+
+            printf("Reversed String: %s\n", str1);
+            break;
+
+        default:
+            printf("Invalid selection! Run the program again.\n");
+    }
+
+    return 0;
+}
